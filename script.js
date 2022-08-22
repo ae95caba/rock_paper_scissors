@@ -31,7 +31,8 @@ function getComputerChoice(){
 //the first parameter makes it so the defaul value will be to show a prompt whos input will be the  playerselection
 
 function playRound(playerselection= prompt("select rock paper or scissors").toLowerCase(),computerselection){
-  
+   var computerselection = getComputerChoice();
+   console.log(`Computer choosed: ${computerselection}`);
    if (computerselection==="Scissors"){
       if (playerselection==="rock"){
          return "Player wins";
@@ -85,11 +86,11 @@ function game(){
 
    for (var i = 1; i < 6; i++) {
       //this var is created so the function playRound will only run once, there
-      var roundResult = (playRound(playerselection,getComputerChoice()));
+      var roundResult = (playRound(playerselection));
         //this will show in console who wins each round
       console.log(roundResult);
       //this will show in console the round number
-      console.log (`Round ${i}`);
+      console.log (`Round ${i} results:`);
       //this is just a counter
       if (roundResult==="Player wins"){
         playerWinsCount++;
