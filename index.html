@@ -1,13 +1,36 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
+    <div>
+        <button id="play">Play</button>
+        <div class="player-options" style="display:none;">
+            
+            <button id="scissors" >Scissors</button>
+            <button id="rock">Rock</button>
+            <button id="paper">Paper</button>
+        </div>
+
+        <div class="info" >
+            <div id="user-choice"></div>
+            <div id="computer-choice"></div>
+            <div id="winner"></div>
+            <div id="round"></div>
+            <div id="player-counter"></div>
+            <div id="computer-counter"></div>
+        </div>
+        <div class="final-result" style="display:none">
+            <div id="final-winner"></div>
+            <div id="final-player-counter"></div>
+            <div id="final-computer-counter"></div>
+        </div>
+    </div>
     
 </body>
 </html>

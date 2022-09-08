@@ -1,8 +1,5 @@
 var playerselection 
 
-
-
-
 //returns a random number between 0 an 2 which will be used to decid between rock paper or scisors
 
 
@@ -26,100 +23,133 @@ function getComputerChoice(){
 }
 
 
+
+const userChoice = document.querySelector("#user-choice");
+
+const computerChoice = document.querySelector("#computer-choice");
+
+const playerCounter = document.querySelector("#player-counter");
+let playerCounterArray = ["player wins" , 0 ];
+
+
+const computerCounter = document.querySelector("#computer-counter");
+let computerCounterArray = ["Computer wins" , 0 ];
+
+
 //plays 1 round of rock paper scissors returning the winner as a string
 //in the computerselection parameter, the function getComputerChoice() should be used
 //the first parameter makes it so the defaul value will be to show a prompt whos input will be the  playerselection
 
-function playRound(playerselection= prompt("select rock paper or scissors").toLowerCase(),computerselection){
+function playRound(playerselection){
+   userChoice.innerText = `Player choice: ${playerselection}`;
+
    var computerselection = getComputerChoice();
-   console.log(`Computer choosed: ${computerselection}`);
+   computerChoice.innerText =`Computer choosed: ${computerselection}`;
+
    if (computerselection==="Scissors"){
       if (playerselection==="rock"){
-         return "Player wins";
+         winner.innerText = "Player wins round";
       }else if (playerselection==="paper"){
-         return"Player looses";
+         winner.innerText ="Player looses round";
       }else {
-         return "Is a tie";
+         winner.innerText = "Is a tie round";
       }
    }
 
    if (computerselection==="Paper"){
       if (playerselection==="rock"){
-         return "Player looses";
+         winner.innerText = "Player looses round";
       }else if (playerselection==="paper"){
-         return"Is a tie";
+         winner.innerText ="Is a tie round";
       }else {
-         return "Player wins";
+         winner.innerText = "Player wins round";
       }
    }
 
    if (computerselection==="Rock"){
       if (playerselection==="rock"){
-         return "Is a tie";
+         winner.innerText = "Is a tie round";
       }else if (playerselection==="paper"){
-         return"Player wins";
+         winner.innerText ="Player wins round";
       }else {
-         return "Player looses";
+          winner.innerText = "Player looses round";
       }
    };
+   
+  
+   
+
+      if(winner.innerText === "Player wins round") { 
+         
+         playerCounterArray[1] += 1 ;
+         playerCounter.innerText = playerCounterArray;
+      }else if (winner.innerText === "Player looses round"){
+         computerCounterArray[1] += 1 ;
+         computerCounter.innerText = computerCounterArray;
+      }else if (winner.innerText === " Its a tie round") {
+         return;
+      }
    
 }
 
 
 
+//-------------------  UI  -----------------------------
 
+const winner = document.querySelector("#winner");
 
+const scissors = document.getElementById("scissors");
+const playerOptions = document.querySelector(".player-options");
+const finalResult = document.querySelector(".final-result");
 
+const finalWinner = document.querySelector("#final-winner");
 
+function equisss (choice) {
+   
+   if (playerCounterArray[1] < 5 && computerCounterArray[1] <5 ){
+      playRound(choice);}
+   if (playerCounterArray[1] === 5 || computerCounterArray[1] === 5 ){
+      
+      
+      playerOptions.style.display = "none";
+      info.style.display="none";
+     
+      finalResult.style.display="block";
 
-
-
-
- 
-
-
-
-function game(){
-   //every time the game is run in the loop, a counter will increase every time someone wins
-   var playerWinsCount = 0;
-   var computerWinsCount = 0;
-
-   for (var i = 1; i < 6; i++) {
-      //this var is created so the function playRound will only run once, there
-      var roundResult = (playRound(playerselection));
-        //this will show in console who wins each round
-      console.log(roundResult);
-      //this will show in console the round number
-      console.log (`Round ${i} results:`);
-      //this is just a counter
-      if (roundResult==="Player wins"){
-        playerWinsCount++;
-      }else if (roundResult==="Player looses"){
-         computerWinsCount++;
+      if (playerCounterArray[1]>computerCounterArray[1]){
+         finalWinner.innerText = "You win, congratulations!";
       }
-      //this shows in console the wins counter
-      console.log(`Player wins:${playerWinsCount}`);
-      console.log(`Cimputer wins: ${computerWinsCount}`);
 
-   };
+      if (playerCounterArray[1]<computerCounterArray[1]){
+         finalWinner.innerText = "You lose sucker !";
+      }
 
-   //this RETURNS the final result based of the previous counter
+   
+   }
+
+}
+
+scissors.addEventListener("click", () => equisss("scissors"))
+
+const rock = document.getElementById("rock");
+rock.addEventListener("click", () => equisss("rock"));
+
+const paper = document.getElementById("paper");
+paper.addEventListener("click", () => equisss("paper"));
+
+
+const play = document.querySelector("#play");
+
+const info = document.querySelector(".info");
+
+
+
+play.addEventListener("click", () => {
+   playerOptions.style.display="block";
+   play.style.display = "none";
    
 
-   if (playerWinsCount>computerWinsCount){
-      
-      return "Player Wins match";
-   }else if (computerWinsCount>playerWinsCount){
-      return "Computer Wins match";   
-   }else if(computerWinsCount===playerWinsCount){
-      return "Is a tie match";
-   };
-
-}  
-
-
-//this SHOWS in the console the final result, plus every console log inside game()
-console.log(game());
+})
 
 
 
